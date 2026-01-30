@@ -37,3 +37,22 @@ export const createManager = async (req: Request, res: Response)=> {
         res.status(500).json({message: `Error creating tenant: ${err.message}`});
     }
 }
+
+export const updateManager = async (req: Request, res: Response)=> {
+    try {
+        const {cognitoId: id} = req.params;
+        const { name, email, phoneNumber} = req.body;
+        const updatedManager = await prisma.manager.update({
+            where: { cognitoId: id as string },
+            data: {
+                name,
+                email,
+                phoneNumber
+            }
+        });
+
+        res.json(updatedManager)
+    } catch (err: any) {
+        res.status(500).json({message: `Error updating manager: ${err.message}`});
+    }
+}
