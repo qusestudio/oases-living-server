@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import {Prisma, PrismaClient} from "@prisma/client/extension";
 import {prisma} from "../lib/prisma.js";
 
 
